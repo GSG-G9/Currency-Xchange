@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency-Xchange</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo_link"><p class="logo">Currency <span class="xchange_xletter">X </span>change</p></a>
+    </header>
+    <main>
+        <p class="view_currency_p"><span class="view_first_view_currency">1 United States Dollar </span> equal <span class="view_second_view_currency">3.38 Israeli New Shekel</span></p>
+        <div class="exchange_div">
+            <div class="exchange_from">
+                <label for="exchange_from_input" class="exchange_from_lbl">Enter your country, please</label>
+                <img src="" alt="img" class="country_img" id="country_from_flat">
+                <input id="exchange_from_input" type="text" name="exchange_from" class="exchange_from_input">
+            </div>
+            <div class="exchange_to">
+                <label for="exchange_to_input" class="exchange_to_lbl">Enter country you need to exchange your currency to.</label>
+                <img src="" alt="img" class="country_img" id="country_to_flag">
+                <input id="exchange_to_input" type="text" name="exchange_to" class="exchange_to_input">
+            </div>
+            <div class="money_toexchange_div">
+                <label for="money_exchange_input" class="money_exchange_lbl">How much you need to exchange?</label>
+                <input id="money_exchange_input" type="text" name="money_exchange_input" class="money_exchange_input">
+                <button class="exchange_btn" id="exchange_btn">Exchange</button>
+                <p class="result_p">Equal <span class="Result_convert"></span></p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Copyright © 2020 All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
