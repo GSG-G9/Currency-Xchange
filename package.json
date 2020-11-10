@@ -1,0 +1,23 @@
+{
+  "name": "Currency-Xchange",
+  "version": "1.0.0",
+  "description": "Simple currency converter website",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GSG-G9/Currency-Xchange.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GSG-G9/Currency-Xchange/issues"
+  },
+  "homepage": "https://github.com/GSG-G9/Currency-Xchange#readme",
+  "dependencies": {
+    "jest": "^26.6.3"
+  }
+}
