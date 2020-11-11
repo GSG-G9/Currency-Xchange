@@ -1,4 +1,4 @@
-let fromCurrency= "CAD";
+let fromCurrency= "USD";
 let toCurrency= "TRY";
 
 const firstCurrencyName= document.querySelector(".view_first_view_currency");
@@ -6,14 +6,21 @@ const secondCurrencyName= document.querySelector(".view_second_view_currency");
 const secondCurrencyRate= document.querySelector(".view_second_rate_currency");
 const inputNumber= document.querySelector(".money_exchange_input");
 const exchangeButton = document.querySelector("#exchange_btn");
+const result= document.querySelector(".Result_convert");
+const firstCountry= document.querySelector("#exchange_from_input");
 
 
 exchangeButton.addEventListener("click", function (){
   
-  GenericXHR (getCurrencyConversion( inputNumber.value, fromCurrency, toCurrency) , displayConversionResult)
+     GenericXHR (getCurrencyConversion( inputNumber.value, fromCurrency, toCurrency) , displayConversionResult)
+    
+
 });
 
-
+firstCountry.addEventListener("focusout", function(){
+    GenericXHR (getCurrencyConversion(1, fromCurrency, toCurrency), displayCurrencyRate);
+    GenericXHR ("https://api.frankfurter.app/currencies", displayCurrencyName)
+})
 
 
 function displayCurrencyName(res){
@@ -31,6 +38,8 @@ function displayCurrencyRate(res){
 
 function displayConversionResult(res){
   console.log(res);
+  result.textContent= res.rates[toCurrency]
+
 }
 
 
@@ -66,15 +75,10 @@ function handelErorr(data){
   }
 
 
-GenericXHR("https://restcountries.eu/rest/v2/all", fun);
-
-function fun(res){
-  console.log(res.length)
-}
 
 
 
-GenericXHR (getCurrencyConversion(1, fromCurrency, toCurrency), displayCurrencyRate);
-GenericXHR ("https://api.frankfurter.app/currencies", displayCurrencyName)
+
+// GenericXHR ("https://api.frankfurter.app/currencies", displayCurrencyName)
 
   
