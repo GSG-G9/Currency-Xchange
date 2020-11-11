@@ -1,3 +1,4 @@
+
 function GenericXHR (url , responseCallback){
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = ()=>{
