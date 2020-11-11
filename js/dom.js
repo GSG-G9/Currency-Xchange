@@ -19,14 +19,16 @@ const country_to_symbol = document.getElementById('country_to_symbol')
 const countryFunc1 = (response) => {
     exchangeFromFlag.src = response[0].flag
     country_from_symbol.innerText = response[0].currencies[0].code;
-    return response[0].currencies[0].code;
+    fromCurrency =response[0].currencies[0].code;
+  
 
 }
 
 const countryFunc2 = (response) => {
   exchangeToFlag.src = response[0].flag
   country_to_symbol.innerText = response[0].currencies[0].code;
-  return response[0].currencies[0].code;
+  toCurrency =response[0].currencies[0].code;
+  
 }
 
 
@@ -36,8 +38,11 @@ exchangeFrom.addEventListener('focusout', () => {
 
  exchangeTo.addEventListener('focusout', () => {
     GenericXHR(`https://restcountries.eu/rest/v2/name/${exchangeTo.value}`,countryFunc2)
+    GenericXHR ("https://api.frankfurter.app/currencies", displayCurrencyName);
     GenericXHR (getCurrencyConversion(1, country_from_symbol.innerText, country_to_symbol.innerText), displayCurrencyRate);
-    GenericXHR ("https://api.frankfurter.app/currencies", displayCurrencyName)
+    
+    
+    
   });
 
 
@@ -51,9 +56,7 @@ exchangeButton.addEventListener("click", function (){
 
 });
 
-// firstCountry.addEventListener("focusout", function(){
-    
-// })
+
 
 
 function displayCurrencyName(res){
@@ -66,7 +69,7 @@ function displayCurrencyName(res){
 
 function displayCurrencyRate(res){
   secondCurrencyRate.textContent = res.rates[country_to_symbol.innerText];
-  console.log(res)
+  console.log(res.rates[country_to_symbol.innerText]);
 }
 
 function displayConversionResult(res){
@@ -107,14 +110,6 @@ function handelErorr(data){
   function getCurrencyConversion(numberToBeConverted){
       return `https://api.frankfurter.app/latest?amount=${numberToBeConverted}&from=${country_from_symbol.innerText}&to=${country_to_symbol.innerText}`
   }
-
-
-
-
-
-
-// GenericXHR ("https://api.frankfurter.app/currencies", displayCurrencyName)
-
 
 
   
