@@ -5,6 +5,20 @@ const exchangeToFlag = document.getElementById('country_to_flag');
 const exchangeBtn = document.getElementById('exchange_btn');
 const country_from_symbol = document.getElementById('country_from_symbol')
 const country_to_symbol = document.getElementById('country_to_symbol')
+const inputChangeTo = document.getElementById('exchange_to_input');
+const main = document.getElementById('main');
+
+function handelErorr(error){
+    const errorP = document.getElementById('error_handel');
+    errorP.textContent = error;
+}
+
+
+inputChangeTo.addEventListener('focusout' , function(){
+    GenericXHR( `https://api.unsplash.com/search/photos?client_id=0ZxAs6sAoEUe2x4F8jct34FDsXarlgmSj6q5o1QXa9I&query=${inputChangeTo.value}`, (data)=>{
+        main.style.backgroundImage = ` url(${data.results[0].urls.regular})`;
+    })
+})
 
 const countryFunc1 = (response) => {
     exchangeFromFlag.src = response[0].flag

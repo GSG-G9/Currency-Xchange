@@ -4,8 +4,7 @@ function GenericXHR (url , responseCallback){
     xhr.onreadystatechange = ()=>{
         if(xhr.readyState === 4){
             if(xhr.status === 200){
-                const respnose = JSON.parse(xhr.responseText);
-                responseCallback(respnose);
+               return responseCallback(JSON.parse(xhr.responseText));
             }else if(xhr.status === 404){
                 handelErorr(`not found,${xhr.status},${xhr.responseText1}`);
             }else{
@@ -17,7 +16,4 @@ function GenericXHR (url , responseCallback){
     xhr.send();
 }
 
-function handelErorr(data){
-    const errorP = document.getElementById('error_handel');
-    errorP.textContent = data;
-}
+
