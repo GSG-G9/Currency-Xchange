@@ -17,7 +17,7 @@
     "url": "https://github.com/GSG-G9/Currency-Xchange/issues"
   },
   "homepage": "https://github.com/GSG-G9/Currency-Xchange#readme",
-  "dependencies": {
+  "divDependencies": {
     "jest": "^26.6.3"
   }
 }
