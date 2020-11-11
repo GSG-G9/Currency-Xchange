@@ -7,7 +7,37 @@ const secondCurrencyRate= document.querySelector(".view_second_rate_currency");
 const inputNumber= document.querySelector(".money_exchange_input");
 const exchangeButton = document.querySelector("#exchange_btn");
 const result= document.querySelector(".Result_convert");
-const firstCountry= document.querySelector("#exchange_from_input");
+
+const exchangeFrom = document.getElementById('exchange_from_input');
+const exchangeTo = document.getElementById('exchange_to_input');
+
+const exchangeFromFlag = document.getElementById('country_from_flag');
+const exchangeToFlag = document.getElementById('country_to_flag');
+const country_from_symbol = document.getElementById('country_from_symbol')
+const country_to_symbol = document.getElementById('country_to_symbol')
+
+const countryFunc1 = (response) => {
+    exchangeFromFlag.src = response[0].flag
+    country_from_symbol.innerText = response[0].currencies[0].code
+
+}
+
+const countryFunc2 = (response) => {
+  exchangeToFlag.src = response[0].flag
+  country_to_symbol.innerText = response[0].currencies[0].code
+}
+
+
+exchangeFrom.addEventListener('focusout', () => {
+    GenericXHR(`https://restcountries.eu/rest/v2/name/${exchangeFrom.value}`,countryFunc1)
+  });
+
+ exchangeTo.addEventListener('focusout', () => {
+    GenericXHR(`https://restcountries.eu/rest/v2/name/${exchangeTo.value}`,countryFunc2)
+  });
+
+
+
 
 
 exchangeButton.addEventListener("click", function (){
@@ -17,10 +47,10 @@ exchangeButton.addEventListener("click", function (){
 
 });
 
-firstCountry.addEventListener("focusout", function(){
-    GenericXHR (getCurrencyConversion(1, fromCurrency, toCurrency), displayCurrencyRate);
-    GenericXHR ("https://api.frankfurter.app/currencies", displayCurrencyName)
-})
+// firstCountry.addEventListener("focusout", function(){
+//     GenericXHR (getCurrencyConversion(1, fromCurrency, toCurrency), displayCurrencyRate);
+//     GenericXHR ("https://api.frankfurter.app/currencies", displayCurrencyName)
+// })
 
 
 function displayCurrencyName(res){
@@ -81,4 +111,10 @@ function handelErorr(data){
 
 // GenericXHR ("https://api.frankfurter.app/currencies", displayCurrencyName)
 
+
+
+  
+
+  
+  
   
