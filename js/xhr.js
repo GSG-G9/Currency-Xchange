@@ -16,7 +16,3 @@ function GenericXHR (url , responseCallback){
 }
 
 
-
-module.exports = {
-    GenericXHR,
-}
