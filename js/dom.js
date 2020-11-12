@@ -14,7 +14,21 @@ const inputNumber = document.querySelector(".money_exchange_input");
 const exchangeButton = document.querySelector("#exchange_btn");
 const result = document.querySelector(".Result_convert");
 
-const unity=1;
+function handelErorr(error) {
+  const errorP = document.getElementById("error_handel");
+  errorP.textContent = error;
+}
+
+inputChangeTo.addEventListener("focusout", function () {
+  GenericXHR(
+    `https://api.unsplash.com/search/photos?client_id=0ZxAs6sAoEUe2x4F8jct34FDsXarlgmSj6q5o1QXa9I&query=${inputChangeTo.value}`,
+    (data) => {
+      main.style.backgroundImage = ` url(${data.results[0].urls.regular})`;
+    }
+  );
+});
+
+const unity = 1;
 let firstCountry = "USD";
 let secondCountry = "TRY";
 
@@ -57,24 +71,15 @@ exchangeTo.addEventListener("focusout", () => {
     countryFunc2
   );
   GenericXHR("https://api.frankfurter.app/currencies", displayCurrencyName);
-
 });
 
 exchangeButton.addEventListener("click", function () {
-  
   GenericXHR(
-    getCurrencyConversion(
-      unity,
-      firstCountry,
-      secondCountry,
-    ),
+    getCurrencyConversion(unity, firstCountry, secondCountry),
     displayCurrencyRate
   );
   GenericXHR(
-    getCurrencyConversion(
-      inputNumber.value,
-      firstCountry, secondCountry
-    ),
+    getCurrencyConversion(inputNumber.value, firstCountry, secondCountry),
     displayConversionResult
   );
 });
@@ -82,11 +87,10 @@ exchangeButton.addEventListener("click", function () {
 function displayCurrencyName(res) {
   firstCurrencyName.textContent = `1 ${res[country_from_symbol.innerText]}`;
   secondCurrencyName.textContent = res[country_to_symbol.innerText];
-  
 }
 
 function displayCurrencyRate(res) {
-  secondCurrencyRate.textContent =res.rates[country_to_symbol.innerText];
+  secondCurrencyRate.textContent = res.rates[country_to_symbol.innerText];
   console.log(res);
 }
 
