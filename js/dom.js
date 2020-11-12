@@ -1,6 +1,12 @@
-// let fromCurrency= "USD";
-// let toCurrency= "TRY";
-
+const exchangeFrom = document.getElementById("exchange_from_input");
+const exchangeTo = document.getElementById("exchange_to_input");
+const exchangeFromFlag = document.getElementById("country_from_flag");
+const exchangeToFlag = document.getElementById("country_to_flag");
+const exchangeBtn = document.getElementById("exchange_btn");
+const country_from_symbol = document.getElementById("country_from_symbol");
+const country_to_symbol = document.getElementById("country_to_symbol");
+const inputChangeTo = document.getElementById("exchange_to_input");
+const main = document.getElementById("main");
 const firstCurrencyName = document.querySelector(".view_first_view_currency");
 const secondCurrencyName = document.querySelector(".view_second_view_currency");
 const secondCurrencyRate = document.querySelector(".view_second_rate_currency");
@@ -8,15 +14,23 @@ const inputNumber = document.querySelector(".money_exchange_input");
 const exchangeButton = document.querySelector("#exchange_btn");
 const result = document.querySelector(".Result_convert");
 
-const exchangeFrom = document.getElementById("exchange_from_input");
-const exchangeTo = document.getElementById("exchange_to_input");
-
-const exchangeFromFlag = document.getElementById("country_from_flag");
-const exchangeToFlag = document.getElementById("country_to_flag");
-const country_from_symbol = document.getElementById("country_from_symbol");
-const country_to_symbol = document.getElementById("country_to_symbol");
+const unity=1;
 let firstCountry = "USD";
-let secondCountry = "ILS";
+let secondCountry = "TRY";
+
+function handelErorr(error) {
+  const errorP = document.getElementById("error_handel");
+  errorP.textContent = error;
+}
+
+// inputChangeTo.addEventListener("focusout", function () {
+//   GenericXHR(
+//     `https://api.unsplash.com/search/photos?client_id=0ZxAs6sAoEUe2x4F8jct34FDsXarlgmSj6q5o1QXa9I&query=${inputChangeTo.value}`,
+//     (data) => {
+//       main.style.backgroundImage = ` url(${data.results[0].urls.regular})`;
+//     }
+//   );
+// });
 
 const countryFunc1 = (response) => {
   exchangeFromFlag.src = response[0].flag;
@@ -43,19 +57,24 @@ exchangeTo.addEventListener("focusout", () => {
     countryFunc2
   );
   GenericXHR("https://api.frankfurter.app/currencies", displayCurrencyName);
-  GenericXHR(
-    getCurrencyConversion(
-      1,
-      country_from_symbol.innerText,
-      country_to_symbol.innerText
-    ),
-    displayCurrencyRate
-  );
+
 });
 
 exchangeButton.addEventListener("click", function () {
+  
   GenericXHR(
-    getCurrencyConversion(inputNumber.value, firstCountry, secondCountry),
+    getCurrencyConversion(
+      unity,
+      firstCountry,
+      secondCountry,
+    ),
+    displayCurrencyRate
+  );
+  GenericXHR(
+    getCurrencyConversion(
+      inputNumber.value,
+      firstCountry, secondCountry
+    ),
     displayConversionResult
   );
 });
@@ -63,13 +82,12 @@ exchangeButton.addEventListener("click", function () {
 function displayCurrencyName(res) {
   firstCurrencyName.textContent = `1 ${res[country_from_symbol.innerText]}`;
   secondCurrencyName.textContent = res[country_to_symbol.innerText];
-  console.log(res);
-  console.log(res[country_from_symbol.innerText]);
+  
 }
 
 function displayCurrencyRate(res) {
-  secondCurrencyRate.textContent = res.rates[country_to_symbol.innerText];
-  console.log(res.rates[country_to_symbol.innerText]);
+  secondCurrencyRate.textContent =res.rates[country_to_symbol.innerText];
+  console.log(res);
 }
 
 function displayConversionResult(res) {
